@@ -82,19 +82,17 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSCameraCellNibName];
     cellNib = [UINib nibWithNibName:YMSPhotoCellNibName bundle:[NSBundle bundleForClass:YMSPhotoCell.class]];
     [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSPhotoCellNibName];
-    self.photoCollectionView.allowsMultipleSelection = self.allowsMultipleSelection;
+    //    self.photoCollectionView.allowsMultipleSelection = self.allowsMultipleSelection;
 
     [self fetchCollections];
 
     UINavigationItem *navigationItem = [[UINavigationItem alloc] init];
     navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss:)];
-
-    if (self.allowsMultipleSelection) {
-        // Add done button for multiple selections
-        self.doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishPickingPhotos:)];
-        self.doneItem.enabled = NO;
-        navigationItem.rightBarButtonItem = self.doneItem;
-    }
+    
+    // Add done button for multiple selections
+    self.doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishPickingPhotos:)];
+    self.doneItem.enabled = NO;
+    navigationItem.rightBarButtonItem = self.doneItem;
 
     self.navigationBar.items = @[navigationItem];
 
@@ -403,14 +401,14 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
                 self.needToSelectFirstPhoto = YES;
             }
 
-            if (!self.allowsMultipleSelection) {
-                if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
-                    [self.delegate photoPickerViewController:self didFinishPickingImage:image];
-                }
-                else {
-                    [self dismiss:nil];
-                }
-            }
+//            if (!self.allowsMultipleSelection) {
+//                if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
+//                    [self.delegate photoPickerViewController:self didFinishPickingImage:image];
+//                }
+//                else {
+//                    [self dismiss:nil];
+//                }
+//            }
         }];
     }];
 }
